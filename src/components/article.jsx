@@ -37,7 +37,7 @@ class Article extends Component
 
         // This would be handled in a utility somewhere else
         const t = new Date( this.state.article.time * 1000 );
-        this.state.article.time = t.getMonth() + '/' + t.getDate() + '/' + t.getFullYear() + ' ' + ('0' + t.getHours()).slice(-2) + ':' + ('0' + t.getMinutes()).slice(-2);
+        this.state.article.time = (t.getMonth() + 1) + '/' + t.getDate() + '/' + t.getFullYear() + ' ' + ('0' + t.getHours()).slice(-2) + ':' + ('0' + t.getMinutes()).slice(-2);
 
         return (
             <div>
