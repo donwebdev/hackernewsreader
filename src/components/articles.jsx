@@ -5,10 +5,11 @@ import LazyLoadSettings from '../constants/LazyLoadSettings';
 import * as ReactDOM from "react-dom";
 
 /*
- Component that handles results from the Hacker News API
- Use componentDidMount
- Call API to get all articles here
- Listen to scroll position to load correct amount of articles
+    Articles Component
+
+    Loads articles from the API
+    Could be enhanced to pull multiple article types by passing different settings to HackerNewsApi.ENDPOINTS[]
+
  */
 
 class Articles extends Component {
@@ -61,6 +62,7 @@ class Articles extends Component {
         ReactDOM.render(<Article articleId={id}/>, document.getElementById('article-' + id))
     }
 
+    // Calculate how much space is below the screen to load more articles
     calculateArticleAmountToLoad() {
         let windowHeight = window.innerHeight;
         let documentHeight = document.body.scrollHeight;

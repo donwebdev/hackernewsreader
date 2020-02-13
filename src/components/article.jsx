@@ -2,8 +2,12 @@ import React, {Component} from 'react';
 import HackerNewsApi from '../constants/HackerNewsApi';
 
 /*
- Component receives an id from article
- Call componentDidMount on id to load the article
+
+ Article Component
+
+ Requires an article id
+ Gets an article from the API and then renders that articles details
+
  */
 
 class Article extends Component

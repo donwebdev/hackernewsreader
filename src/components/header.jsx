@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 
 /*
- Stateless functional component
+ Stateless component
  Header is attached to top of window
  Header should have a refresh button
- Maybe animate header getting smaller when you scroll
+ Header should show how many articles have been read versus fetched - this info stored in Articles Component State
  */
 
 class Header extends Component
