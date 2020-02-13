@@ -46,9 +46,11 @@ class Articles extends Component {
         let articleCountToLoad = this.calculateArticleAmountToLoad();
 
         for (let i = 0; i < articleCountToLoad; i++) {
-            let articleToRender = this.state.articles.shift();
-            this.renderArticle(articleToRender);
-            this.state.articlesRendered.push(articleToRender);
+            if (this.state.articles.length > 0) {
+                let articleToRender = this.state.articles.shift();
+                this.renderArticle(articleToRender);
+                this.state.articlesRendered.push(articleToRender);
+            }
         }
     }
 
