@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Article from './article';
 import HackerNewsApi from '../constants/HackerNewsApi';
+import LazyLoadSettings from '../constants/LazyLoadSettings';
 import * as ReactDOM from "react-dom";
 
 /*
@@ -15,7 +16,8 @@ class Articles extends Component {
     state = {
         isLoading: true,
         articles: [],
-        articlesRendered: []
+        articlesRendered: [],
+        articleTotal: 0
     };
 
     componentDidMount() {
@@ -25,14 +27,16 @@ class Articles extends Component {
             .then(json => {
                 this.setState({
                     isLoading: false,
-                    articles: json
+                    articles: json,
+                    articleTotal: json.length
                 })
+                window.addEventListener('scroll', this.handleScroll, true);
             })
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
 
-        if(this.state.isLoading === false) {
+        if (this.state.isLoading === false) {
             this.renderArticles();
         }
     }
@@ -42,25 +46,53 @@ class Articles extends Component {
         let articleCountToLoad = this.calculateArticleAmountToLoad();
 
         for (let i = 0; i < articleCountToLoad; i++) {
-            this.renderArticle(this.state.articles.shift());
+            let articleToRender = this.state.articles.shift();
+            this.renderArticle(articleToRender);
+            this.state.articlesRendered.push(articleToRender);
         }
     }
 
     renderArticle(id) {
         let newArticle = document.createElement('div');
-        newArticle.setAttribute('id', 'article-'+id);
+        newArticle.setAttribute('id', 'article-' + id);
         document.getElementById('articleContainer').appendChild(newArticle);
-        ReactDOM.render(<Article articleId={id} />, document.getElementById('article-'+id))
+        ReactDOM.render(<Article articleId={id}/>, document.getElementById('article-' + id))
     }
 
     calculateArticleAmountToLoad() {
-        return 10;
+        let windowHeight = window.innerHeight;
+        let documentHeight = document.body.scrollHeight;
+        let scrollTop = window.scrollY;
+        let heightToLoad = 0;
+
+        // We haven't rendered anything, load the first list and the first off screen set.
+        if (this.state.articlesRendered.length === 0) {
+            heightToLoad = windowHeight + LazyLoadSettings.OFF_SCREEN_HEIGHT_TO_LOAD;
+            console.log('hello' + heightToLoad);
+        } else {
+            heightToLoad = documentHeight - (scrollTop + windowHeight + LazyLoadSettings.OFF_SCREEN_HEIGHT_TO_LOAD);
+            console.log(documentHeight);
+            console.log(heightToLoad);
+            if (heightToLoad < 0) {
+                heightToLoad = Math.abs(heightToLoad);
+            } else {
+                heightToLoad = 0;
+            }
+        }
+
+
+        return Math.floor(heightToLoad / LazyLoadSettings.HEIGHT_OF_ARTICLES);
     }
+
+    handleScroll = () => {
+        this.renderArticles();
+    };
 
     render() {
         return (
             <div>
-                {this.state.isLoading ? <div className='loading'>loading!</div> : <div className='articleContainer' id='articleContainer'>Articles</div>}
+                {this.state.isLoading ? <div className='loading'>loading!</div> :
+                    <div className='articleContainer' id='articleContainer'>Articles</div>}
             </div>
         )
     }

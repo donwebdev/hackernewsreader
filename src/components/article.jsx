@@ -10,7 +10,7 @@ class Article extends Component
 {
     state = {
         isLoading: true,
-        article: {}
+        article: {title: 'null'}
     };
 
     constructor(props) {
@@ -30,7 +30,14 @@ class Article extends Component
     }
 
     render() {
-        return(<div className="article">{this.state.article.title}</div>)
+        return (
+            <div>
+                {
+                    this.state.isLoading ? <div className='loading'>loading!</div> :
+                    <div className='article'>{this.state.article.title}</div>
+                }
+            </div>
+        )
     }
 }
 
