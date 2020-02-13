@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import HackerNewsApi from  'constants/HackerNewsApi';
 
 /*
  Component receives an id from article

@@ -20,3 +20,5 @@ class HackerNewsApi {
     ENDPOINT_ITEM = [this.BASE_URL, this.API_VERSION, this.ITEM].join(this.SEPARATOR);
 
 }
+
+export default HackerNewsApi;

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import HackerNewsApi from '../constants/HackerNewsApi';
 
 /*
  Component that handles results from the Hacker News API
@@ -9,4 +10,14 @@ import React, {Component} from 'react';
 
 class Articles extends Component
 {
+    render() {
+        let hello = HackerNewsApi.BEST_STORIES;
+        return (
+            <div>
+                articles
+            </div>
+        );
+    }
 }
+
+export default Articles;
