@@ -8,7 +8,8 @@ import React, {Component} from 'react';
 class Footer extends Component
 {
     render() {
-        return <div>footer</div>
+        let d = new Date();
+        return <div className='footer'>&copy;{d.getFullYear()} By <a href="mailto:don@fullstackdon.com">Don Westendorp</a></div>
     }
 }
 

@@ -1,38 +1,60 @@
-.App {
-  text-align: center;
+body {
+    background-color: #eee;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    font-size: 2em;
+    color: #fff;
+    background-color: #1568ce;
+    border-bottom: 2px solid #002e8e;
+    padding: 16px 10px;
+    margin-bottom: 30px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.footer {
+    position: fixed;
+    bottom: 0;
+    height: 45px;
+    background-color: #fff;
+    border-top: 2px solid #002e8e;
+    width: 100%;
+    text-align: center;
+    padding-top: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.article, .article:visited, .article:active {
+    font-size: 22px;
+    cursor: pointer;
+    background-color: #fff;
+    margin: 10px 0;
+    box-shadow: 1px 1px 3px #ccc;
+    padding: 15px 12px;
+    display: block;
+    text-decoration: none;
+    color: #333;
 }
 
-.App-link {
-  color: #61dafb;
+.article .timePosted {
+    font-size: 12px;
+    color: #999;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.article .byline {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+
+.article:hover {
+    background-color: #eef6ff
+}
+
+.articleContainer {
+    width: 80%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 100px 10px;
 }

@@ -10,7 +10,7 @@ import React, {Component} from 'react';
 class Header extends Component
 {
     render() {
-        return <div>header</div>
+        return <div className='header'>WHCC Hacker News Reader</div>
     }
 }
 

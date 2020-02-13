@@ -22,7 +22,7 @@ class Articles extends Component {
 
     componentDidMount() {
 
-        fetch(HackerNewsApi.ENDPOINTS[HackerNewsApi.BEST_STORIES])
+        fetch(HackerNewsApi.ENDPOINTS[HackerNewsApi.NEW_STORIES])
             .then(res => res.json())
             .then(json => {
                 this.setState({
@@ -93,8 +93,8 @@ class Articles extends Component {
     render() {
         return (
             <div>
-                {this.state.isLoading ? <div className='loading'>loading!</div> :
-                    <div className='articleContainer' id='articleContainer'>Articles</div>}
+                {this.state.isLoading ? <div className='loading'>Loading...</div> :
+                    <div className='articleContainer' id='articleContainer' />}
             </div>
         )
     }
