@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import HackerNewsApi from  'constants/HackerNewsApi';
+import HackerNewsApi from '../constants/HackerNewsApi';
 
 /*
  Component receives an id from article
@@ -8,12 +8,29 @@ import HackerNewsApi from  'constants/HackerNewsApi';
 
 class Article extends Component
 {
+    state = {
+        isLoading: true,
+        article: {}
+    };
+
     constructor(props) {
         super(props);
     }
 
+    componentDidMount() {
+
+        fetch(HackerNewsApi.ENDPOINTS[HackerNewsApi.ITEM] + HackerNewsApi.SEPARATOR + this.props.articleId + HackerNewsApi.EXTENSION)
+            .then(res => res.json())
+            .then(json => {
+                this.setState({
+                    isLoading: false,
+                    article: json
+                })
+            })
+    }
+
     render() {
-        return(<div className="article">{this.props.articleId}</div>)
+        return(<div className="article">{this.state.article.title}</div>)
     }
 }
 
