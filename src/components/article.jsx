@@ -8,4 +8,13 @@ import HackerNewsApi from  'constants/HackerNewsApi';
 
 class Article extends Component
 {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return(<div className="article">{this.props.articleId}</div>)
+    }
 }
+
+export default Article;
